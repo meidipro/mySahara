@@ -1,0 +1,49 @@
+# Render.com deployment configuration for mySahara Backend
+# Documentation: https://render.com/docs/yaml-spec
+
+services:
+  # FastAPI Backend Service
+  - type: web
+    name: mysahara-backend
+    env: python
+    region: oregon # Choose closest to your users: oregon, frankfurt, singapore
+    plan: free # Change to 'starter' ($7/mo) or 'standard' ($25/mo) for production
+
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT --workers 2
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+
+      # Add your secrets in Render Dashboard
+      - key: GROQ_API_KEY
+        sync: false  # Set in Render dashboard
+
+      - key: GEMINI_API_KEY
+        sync: false
+
+      - key: GOOGLE_APPLICATION_CREDENTIALS
+        sync: false
+
+      - key: SUPABASE_URL
+        sync: false
+
+      - key: SUPABASE_ANON_KEY
+        sync: false
+
+      - key: SUPABASE_KEY
+        sync: false
+
+      - key: BACKEND_URL
+        value: https://mysahara-backend.onrender.com # Update with your actual URL
+
+    # Health check endpoint
+    healthCheckPath: /health
+
+    # Auto-deploy on git push
+    autoDeploy: true
+
+    # Custom domains (add after you get your domain)
+    # domains:
+    #   - api.mysahara.app
