@@ -24,6 +24,8 @@ class Settings(BaseSettings):
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = False
     PORT: int = 8000
+    BACKEND_URL: Optional[str] = None
+    WEB_VIEWER_URL: Optional[str] = None
 
     # Security
     SECRET_KEY: Optional[str] = None
@@ -69,7 +71,7 @@ class Settings(BaseSettings):
     OCR_COMPRESSION_QUALITY: int = 85
 
     # AI Settings
-    AI_DEFAULT_MODEL: str = "llama-3.3-70b-versatile"
+    AI_DEFAULT_MODEL: str = "llama-3.3-70b-versatile"  # Updated from llama-3.3-8b-instant (doesn't exist)
     AI_MAX_TOKENS: int = 1024
     AI_TEMPERATURE: float = 0.7
     AI_TIMEOUT: int = 30  # seconds
@@ -88,6 +90,7 @@ class Settings(BaseSettings):
     class Config:
         env_file = str(env_path)
         case_sensitive = True
+        extra = "ignore"  # Ignore extra fields from .env
 
 
 # Create global settings instance

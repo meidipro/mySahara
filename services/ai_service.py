@@ -38,7 +38,7 @@ class AIService:
         if self.gemini_api_key:
             try:
                 genai.configure(api_key=self.gemini_api_key)
-                self.gemini_model = genai.GenerativeModel('gemini-1.5-flash')
+                self.gemini_model = genai.GenerativeModel('gemini-2.0-flash-001')
                 logger.info("Gemini client initialized successfully")
             except Exception as e:
                 logger.error(f"Failed to initialize Gemini client: {str(e)}")
@@ -122,7 +122,7 @@ Format responses in a friendly, conversational tone."""
         message: str,
         conversation_history: Optional[List[Dict[str, str]]] = None,
         system_prompt: Optional[str] = None,
-        model: str = "llama-3.3-8b-instant"
+        model: str = "llama-3.3-70b-versatile"
     ) -> Dict[str, Any]:
         """
         Chat using Groq API.
@@ -245,7 +245,7 @@ Format responses in a friendly, conversational tone."""
             return {
                 "success": True,
                 "message": assistant_message,
-                "model_used": "gemini-1.5-flash",
+                "model_used": "gemini-2.0-flash-001",
                 "processing_time": processing_time
             }
 
