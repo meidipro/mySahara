@@ -31,7 +31,7 @@ logger.add(
 )
 
 # Import API routes
-from api import ocr, ai_chat, health, nutrition_fitness, logs, progress
+from api import ocr, ai_chat, health, nutrition_fitness, logs, progress, family_insights
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -64,6 +64,7 @@ app.include_router(ocr.router, prefix="/api/ocr", tags=["OCR"])
 app.include_router(ai_chat.router, prefix="/api/ai", tags=["AI Chat"])
 app.include_router(health.router, prefix="/api/health", tags=["Health Analysis"])
 app.include_router(nutrition_fitness.router, prefix="/api/nutrition-fitness", tags=["AI Nutrition & Fitness"])
+app.include_router(family_insights.router, prefix="/api/family", tags=["Family Health Insights"])
 app.include_router(logs.router, prefix="/api/logs", tags=["Logging"])
 app.include_router(progress.router, prefix="/api/progress", tags=["Progress"])
 
