@@ -11,6 +11,9 @@ google-cloud-vision>=3.8.0
 google-generativeai>=0.8.0
 groq>=0.11.0
 
+# Firebase Services
+firebase-admin>=6.5.0
+
 # Environment and Configuration
 python-dotenv>=1.0.1
 
