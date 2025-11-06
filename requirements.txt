@@ -14,6 +14,9 @@ groq>=0.11.0
 # Firebase Services
 firebase-admin>=6.5.0
 
+# Scheduler
+APScheduler>=3.10.4
+
 # Environment and Configuration
 python-dotenv>=1.0.1
 

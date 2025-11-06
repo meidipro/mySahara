@@ -139,6 +139,19 @@ async def global_exception_handler(request, exc):
     )
 
 
+@app.on_event("startup")
+async def startup_event():
+    """
+    Startup event - Initialize scheduler for automated notifications
+    """
+    try:
+        from services.scheduler_service import initialize_scheduler
+        await initialize_scheduler()
+        logger.info("Scheduler initialized successfully")
+    except Exception as e:
+        logger.warning(f"Scheduler initialization failed (non-critical): {e}")
+
+
 if __name__ == "__main__":
     import uvicorn
 
